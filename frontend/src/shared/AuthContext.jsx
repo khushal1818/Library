@@ -414,12 +414,13 @@
 // };
 
 import { createContext, useContext, useState, useEffect } from "react";
+import { API_BASE_URL } from "../config/api";
 
 const AuthContext = createContext(null);
 
 const SESSION_KEY = "library-auth-session";
 const TOKEN_KEY = "library-auth-token";
-const API_BASE_URL = "http://localhost:50000/api/auth";
+const AUTH_API_URL = `${API_BASE_URL}/api/auth`;
 
 const defaultAccounts = [];
 
@@ -475,7 +476,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/users`, {
+      const response = await fetch(`${AUTH_API_URL}/users`, {
         method: "GET",
 
         headers: {
@@ -554,7 +555,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const response = await fetch(`${API_BASE_URL}/me`, {
+        const response = await fetch(`${AUTH_API_URL}/me`, {
           method: "GET",
 
           headers: {
@@ -605,7 +606,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("AuthContext: Sending login request to backend...");
 
-      const response = await fetch(`${API_BASE_URL}/login`, {
+      const response = await fetch(`${AUTH_API_URL}/login`, {
         method: "POST",
 
         headers: {
@@ -705,7 +706,7 @@ export const AuthProvider = ({ children }) => {
 
   const registerStudent = async ({ name, email, phone, password }) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/register`, {
+      const response = await fetch(`${AUTH_API_URL}/register`, {
         method: "POST",
 
         headers: {
@@ -752,7 +753,7 @@ export const AuthProvider = ({ children }) => {
 
   const verifyOtpCode = async ({ email, otp }) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/verify-otp`, {
+      const response = await fetch(`${AUTH_API_URL}/verify-otp`, {
         method: "POST",
 
         headers: {
@@ -804,7 +805,7 @@ export const AuthProvider = ({ children }) => {
     rollNumber,
   }) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/complete-profile`, {
+      const response = await fetch(`${AUTH_API_URL}/complete-profile`, {
         method: "POST",
 
         headers: {
@@ -890,7 +891,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/update-profile`, {
+      const response = await fetch(`${AUTH_API_URL}/update-profile`, {
         method: "PUT",
 
         headers: {

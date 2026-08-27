@@ -29,6 +29,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { adminBooksPageStyles as s } from "../assets/dummyStyles";
 import { useLibrary } from "../shared/LibraryContext";
 import { FilePlus2, Search, Trash2 } from "lucide-react";
+import { API_BASE_URL } from "../config/api";
 
 const getTodayIso = () => {
   const date = new Date();
@@ -104,7 +105,7 @@ const AdminBooksPage = () => {
         const token = localStorage.getItem("library-auth-token");
 
         const response = await fetch(
-          `http://localhost:50000/api/students/search-by-roll?roll=${encodeURIComponent(
+          `${API_BASE_URL}/api/students/search-by-roll?roll=${encodeURIComponent(
             issueForm.rollNumber.trim(),
           )}`,
           {
